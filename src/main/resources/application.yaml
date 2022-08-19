@@ -1,0 +1,49 @@
+# active spring profile
+spring:
+  http:
+    encoding:
+      enabled: true
+      force: true
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: ${db.url}
+    username: ${db.username}
+    password: ${db.password}
+    jpa:
+      database-platform: org.hibernate.dialect.MariaDBDialect
+      hibernate:
+        ddl-auto: validate #create update none
+        show-sql: true
+        naming:
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      properties:
+        hibernate:
+          format_sql: true
+          highlight_sql: true
+
+
+# logging
+logging:
+  level:
+    com:
+      zaxxer:
+        hikari: INFO
+    javax:
+      sql:
+        DataSource: OFF
+    jdbc:
+      audit: OFF
+      resultset: OFF
+      resultsettable: OFF    #SQL ?? ??? Table? ??? ???.
+      sqlonly: OFF           #SQL? ??? ???.
+      sqltiming: INFO        #SQL? ????? ????.
+      connection : OFF       #??? ????
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
