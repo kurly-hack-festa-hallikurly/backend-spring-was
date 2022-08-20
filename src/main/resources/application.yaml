@@ -47,3 +47,5 @@ logging:
           descriptor:
             sql:
               BasicBinder: TRACE
+server:
+  port: 9091
