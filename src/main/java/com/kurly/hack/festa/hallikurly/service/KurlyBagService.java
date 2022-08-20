@@ -12,7 +12,7 @@ public class KurlyBagService implements IKurlyBagService{
 
     @Override
     public ResponseEntity<?> getKurlyBagInfo(long userId) {
-        String MLReponseValue = restTemplateService.getMLServerKurlyBagInfo(userId);
+        String MLReponseValue = restTemplateService.kurlyBagInfoReqToMLServer(userId);
 
         return ResponseEntity.ok(MLReponseValue);
 

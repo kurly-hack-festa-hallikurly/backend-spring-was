@@ -8,6 +8,7 @@ import java.util.Map;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.kurly.hack.festa.hallikurly.dto.KurlyBagDto;
+import com.kurly.hack.festa.hallikurly.dto.RequestUserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -33,16 +34,22 @@ public class RestTemplateService {
 	@Autowired
 	private RestTemplate restTemplate;
 
-	public String getMLServerKurlyBagInfo(long userId) {
+
+	public String kurlyBagInfoReqToMLServer(long userId) {
 		URI uri = UriComponentsBuilder
 				.fromUriString("http://localhost:8090")
 				.path("/kurlyBag")
-				.queryParam("userId","12345")
 				.encode()
 				.build()
 				.toUri();
 
-		String jsonStr = restTemplate.getForObject(uri, String.class);
+		RequestUserDto requestUserDto =
+						RequestUserDto
+								.builder()
+								.userId(userId)
+								.build();
+
+		String jsonStr = restTemplate.postForObject(uri, requestUserDto, String.class);
 
 		Gson gson = new Gson();
 		List<KurlyBagDto> kurlyBagDtoList = gson.fromJson(jsonStr, new TypeToken<List<KurlyBagDto>>(){}.getType());
