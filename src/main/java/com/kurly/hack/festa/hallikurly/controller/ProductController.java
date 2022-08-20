@@ -1,5 +1,6 @@
 package com.kurly.hack.festa.hallikurly.controller;
 
+import com.kurly.hack.festa.hallikurly.service.IProductService;
 import com.kurly.hack.festa.hallikurly.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -12,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProductController {
 
-    private final ProductService productService;
+    private final IProductService iProductService;
 
     @GetMapping
     private ResponseEntity<?> getAllProductInfo(){
-        return productService.getAllProductInfo();
+        return iProductService.getAllProductInfo();
     }
 
 }
