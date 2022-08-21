@@ -18,7 +18,7 @@ public class ShopBasketEntity {
     private long basketId;
 
     @Column(name = "user_id")
-    private long user_id;
+    private long userId;
 
     @Column(name = "product_no")
     private long productNo;
