@@ -8,12 +8,8 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class KurlyBagDto {
-    @JsonProperty("user_id")
-    private String userId;
 
-    @JsonProperty("user_nm")
-    private String userPw;
+    private long productNo;
 
-//    private long productNo;
-//    private long productNm;
+    private long productNm;
 }

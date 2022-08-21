@@ -1,8 +1,7 @@
 package com.kurly.hack.festa.hallikurly.controller;
 
-import com.kurly.hack.festa.hallikurly.service.IKurlyBagService;
+import com.kurly.hack.festa.hallikurly.service.IShoppingBasketService;
 import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,23 +13,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/shopping-baskets")
 @RestController
-public class KurlyBagController {
+public class ShoppingBasketController {
 
-    private final IKurlyBagService iKurlyBagService;
+    private final IShoppingBasketService iShoppingBasketService;
 
-    @ApiOperation(value = "장바구니 데이터 요청", notes = "장바구니 데이터를 가져온다.")
+    @ApiOperation(value = "장바구니 데이터 조회", notes = "장바구니 데이터를 가져온다.")
     @ApiImplicitParam(name = "user_id", value = "유저 ID", required = true, dataType = "int", paramType = "query")
     @GetMapping
     private ResponseEntity<?> getShoppingBasketInfo(
             @RequestParam(name ="user_id", required = true) long userId){
-        return iKurlyBagService.getShoppingBasketInfo(userId);
+        return iShoppingBasketService.getShoppingBasketInfo(userId);
     }
 
-    @ApiOperation(value = "컬리백 데이터 요청", notes = "컬리백 데이터를 C -> S -> ML -> S -> C 순으로 가져온다.")
+    @ApiOperation(value = "컬리백 데이터 조회", notes = "컬리백 데이터를 C -> S -> ML -> S -> C 순으로 가져온다.")
     @ApiImplicitParam(name = "user_id", value = "유저 ID", required = true, dataType = "int", paramType = "query")
     @GetMapping("/kurly-bag")
     private ResponseEntity<?> getKurlyBagInfo(
             @RequestParam(name ="user_id", required = true) long userId){
-        return iKurlyBagService.getKurlyBagInfo(userId);
+        return iShoppingBasketService.getKurlyBagInfo(userId);
     }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class KurlyBagService implements IKurlyBagService{
+public class ShoppingBasketService implements IShoppingBasketService {
 
     private final RestTemplateService restTemplateService;
 
