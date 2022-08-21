@@ -9,11 +9,14 @@ import lombok.*;
 @Builder
 public class ProductDto {
 
-    @ApiModelProperty(value = "상품 번호", example = "1,2,3,..")
+    @ApiModelProperty(value = "상품 번호", example = "1")
     private long productNo;
 
     @ApiModelProperty(value = "상품 이름", example = "Strawberry")
     private String productNm;
+
+    @ApiModelProperty(value = "상품 가격", example = "7600")
+    private String price;
 
     @ApiModelProperty(value = "상품 이미지 경로")
     private String productImgPath;

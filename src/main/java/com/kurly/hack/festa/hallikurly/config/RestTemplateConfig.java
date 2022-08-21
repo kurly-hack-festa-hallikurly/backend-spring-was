@@ -14,7 +14,7 @@ public class RestTemplateConfig {
     private final int READ_TIMEOUT = 5000;
     private final int CONNECT_TIMEOUT = 3000;
     private final int MAX_CONN_TOTAL = 100;
-    private final  int MAX_CONN_PER_ROUTE = 5;
+    private final int MAX_CONN_PER_ROUTE = 5;
 
     @Bean
     public RestTemplate restTemplate() {

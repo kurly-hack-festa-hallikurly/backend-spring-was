@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class BaseTimeEntity {
 
     @CreationTimestamp
-    @Column(name = "regist_dtm", updatable = false)
-    private LocalDateTime registDtm;
+    @Column(name = "CREATED_DTM", updatable = false)
+    private LocalDateTime createdDtm;
 
 }

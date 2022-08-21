@@ -36,6 +36,7 @@ public class ProductService implements IProductService{
                             .builder()
                             .productNo(productEntityList.get(i).getProductNo())
                             .productNm(productEntityList.get(i).getProductNm())
+                            .price(productEntityList.get(i).getPrice())
                             .productImgPath(productEntityList.get(i).getProductImgPath())
                             .build());
         }

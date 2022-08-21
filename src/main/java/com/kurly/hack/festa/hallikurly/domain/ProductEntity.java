@@ -20,6 +20,9 @@ public class ProductEntity{
     @Column(name = "PRODUCT_NM")
     private String productNm;
 
+    @Column(name = "PRICE")
+    private String price;
+
     @Column(name = "PRODUCT_IMG_PATH")
     private String productImgPath;
 }
