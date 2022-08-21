@@ -14,10 +14,17 @@ public class KurlyBagService implements IKurlyBagService{
     private final RestTemplateService restTemplateService;
 
     @Override
+    public ResponseEntity<?> getShoppingBasketInfo(long userId) {
+
+        return null;
+    }
+
+    @Override
     public ResponseEntity<?> getKurlyBagInfo(long userId) {
         List<KurlyBagDto> MLReponseValue = restTemplateService.kurlyBagInfoReqToMLServer(userId);
 
         return ResponseEntity.ok(MLReponseValue);
 
     }
+
 }

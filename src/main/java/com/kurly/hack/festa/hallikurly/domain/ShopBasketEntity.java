@@ -9,17 +9,17 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Entity
-@Table(name="TB_PRODUCT")
-public class ProductEntity{
+@Table(name="tb_shop_basket")
+public class ShopBasketEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "PRODUCT_NO")
+    @Column(name = "basket_id")
+    private long basketId;
+
+    @Column(name = "user_id")
+    private long user_id;
+
+    @Column(name = "product_no")
     private long productNo;
-
-    @Column(name = "PRODUCT_NM")
-    private String productNm;
-
-    @Column(name = "PRODUCT_IMG_PATH")
-    private String productImgPath;
 }

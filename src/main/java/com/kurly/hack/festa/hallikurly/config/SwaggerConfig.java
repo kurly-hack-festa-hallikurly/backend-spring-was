@@ -15,7 +15,7 @@ import java.util.Set;
 @Configuration
 public class SwaggerConfig {
 
-    private static final String API_TITLE = "HalliKurly";
+    private static final String API_TITLE = "HALLIKURLY API";
     private static final String API_DESCRIPTION = "Hallikurly Web Server API Docs";
     private static final String API_VERSION = "0.0.1";
 

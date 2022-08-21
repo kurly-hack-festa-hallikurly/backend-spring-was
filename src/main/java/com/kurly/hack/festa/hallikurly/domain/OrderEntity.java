@@ -9,17 +9,18 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Entity
-@Table(name="TB_PRODUCT")
-public class ProductEntity{
+@Table(name="tb_order_history")
+public class OrderEntity extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ORDER_NO")
+    private long orderNo;
+
     @Column(name = "PRODUCT_NO")
     private long productNo;
 
-    @Column(name = "PRODUCT_NM")
-    private String productNm;
+    @Column(name = "USER_ID")
+    private long userId;
 
-    @Column(name = "PRODUCT_IMG_PATH")
-    private String productImgPath;
 }
