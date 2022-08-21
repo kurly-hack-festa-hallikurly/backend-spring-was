@@ -9,13 +9,16 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Entity
-@Table(name="tb_product")
-public class ProductEntity{
+@Table(name="tb_kurly_bag")
+public class KurlyBagEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "kurly_bag_id")
+    private long kurlyBagId;
+
     @Column(name = "PRODUCT_NO")
-    private long productNo;
+    private String productNo;
 
     @Column(name = "PRODUCT_NM")
     private String productNm;
