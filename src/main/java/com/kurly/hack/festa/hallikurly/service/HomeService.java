@@ -16,8 +16,9 @@ import java.util.List;
 @Service
 public class HomeService implements IHomeService{
 
+
     @Override
-    public ResponseEntity<?> init() {
+    public ResponseEntity<?> homeAccess() {
         //1.  s -> ml 컬리백 데이터 요청
         //2. 응답받은 컬리백 데이터 DB 적재
         return null;

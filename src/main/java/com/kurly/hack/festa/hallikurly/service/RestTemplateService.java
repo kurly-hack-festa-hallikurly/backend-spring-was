@@ -6,7 +6,7 @@ import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.kurly.hack.festa.hallikurly.dto.KurlyBagDto;
 import com.kurly.hack.festa.hallikurly.dto.StockDto;
-import com.kurly.hack.festa.hallikurly.dto.UserRequestDto;
+import com.kurly.hack.festa.hallikurly.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -33,13 +33,13 @@ public class RestTemplateService {
 				.build()
 				.toUri();
 
-		UserRequestDto userRequestDto =
-						UserRequestDto
+		UserDto userDto =
+						UserDto
 								.builder()
 								.userId(userId)
 								.build();
 
-		String jsonStr = restTemplate.postForObject(uri, userRequestDto, String.class);
+		String jsonStr = restTemplate.postForObject(uri, userDto, String.class);
 
 		Gson gson = new Gson();
 		List<KurlyBagDto> kurlyBagDtoList = gson.fromJson(jsonStr, new TypeToken<List<KurlyBagDto>>(){}.getType());
