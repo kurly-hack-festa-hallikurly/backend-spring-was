@@ -22,15 +22,14 @@ public class UserService implements IUserService {
     public ResponseEntity<?> userInfoCheckInLogin(UserDto userDto) {
         Optional<UserEntity> user = userRepository.findById(userDto.getUserId());
 
-        // ReponseDto 만들기.
         if (ObjectUtils.isEmpty(user)) {
-            return ResponseEntity.ok("해당 ID의 사용자가 존재하지 않습니다.");
+            return ResponseEntity.badRequest().body("해당 ID의 사용자가 존재하지 않습니다.");
         }
 
         if(user.get().getUserPw() == userDto.getUserPw())
-            return ResponseEntity.ok(HttpStatus.OK);
+            return ResponseEntity.ok("로그인 성공");
         else
-            return ResponseEntity.ok(HttpStatus.BAD_REQUEST);
+            return ResponseEntity.badRequest().body("로그인 실패");
 
     }
 }

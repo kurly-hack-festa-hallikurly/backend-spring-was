@@ -9,7 +9,11 @@ import lombok.*;
 @Builder
 public class KurlyBagDto {
 
+    private long userId;
+
     private long productNo;
 
-    private long productNm;
+    private String productNm;
+    private String price;
+    private String productImgPath;
 }

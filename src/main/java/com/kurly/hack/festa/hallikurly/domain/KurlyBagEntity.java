@@ -17,8 +17,11 @@ public class KurlyBagEntity {
     @Column(name = "kurly_bag_id")
     private long kurlyBagId;
 
+    @Column(name = "USER_ID")
+    private long userId;
+
     @Column(name = "PRODUCT_NO")
-    private String productNo;
+    private long productNo;
 
     @Column(name = "PRODUCT_NM")
     private String productNm;

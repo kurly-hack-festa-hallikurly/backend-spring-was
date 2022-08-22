@@ -21,5 +21,5 @@ public class UserEntity {
     private long userPw;
 
     @Column(name = "user_alias")
-    private long userAlias;
+    private String userAlias;
 }

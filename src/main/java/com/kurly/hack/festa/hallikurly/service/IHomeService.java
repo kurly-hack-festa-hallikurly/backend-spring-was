@@ -8,5 +8,5 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 public interface IHomeService {
-    ResponseEntity<?> homeAccess();
+    ResponseEntity<?> homeAccess(long userId);
 }

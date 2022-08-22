@@ -22,7 +22,7 @@ public class HomeController {
     private ResponseEntity<?> homeAccess(
             @RequestParam(name ="user_id", required = true) long userId
     ){
-        return iHomeService.homeAccess();
+        return iHomeService.homeAccess(userId);
     }
 
 }
