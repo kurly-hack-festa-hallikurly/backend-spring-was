@@ -23,4 +23,7 @@ public class OrderEntity extends BaseTimeEntity{
     @Column(name = "USER_ID")
     private long userId;
 
+    @Column(name = "ORDER_CNT")
+    private long orderCnt;
+
 }

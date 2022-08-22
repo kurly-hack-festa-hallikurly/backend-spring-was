@@ -30,6 +30,7 @@ public class OrderService implements IOrderService{
                             .builder()
                             .productNo(orderDto.get(i).getProductNo())
                             .userId(orderDto.get(i).getUserId())
+                            .orderCnt(orderDto.get(i).getOrderCnt())
                             .build()
             );
         }

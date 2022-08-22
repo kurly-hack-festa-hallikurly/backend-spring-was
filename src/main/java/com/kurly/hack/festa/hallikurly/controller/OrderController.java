@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RequiredArgsConstructor
-@RequestMapping("/order")
+@RequestMapping("/orders")
 @RestController
 public class OrderController {
 
