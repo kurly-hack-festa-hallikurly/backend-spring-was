@@ -18,7 +18,7 @@ public interface ShopBasketRepository extends JpaRepository<ShopBasketEntity, Lo
     @Query(value =
             "SELECT " +
                     "tbs.BASKET_ID, tbs.USER_ID, tbs.PRODUCT_NO," +
-                    "tbp.PRODUCT_NM, tbs.PRODUCT_CNT, tbs.CREATED_DTM " +
+                    "tbp.PRODUCT_NM, tbp.PRICE, tbp.PRODUCT_IMG_PATH, tbs.PRODUCT_CNT, tbs.CREATED_DTM " +
                     "FROM tb_shop_basket tbs " +
                     "LEFT JOIN tb_product tbp " +
                     "ON " +
@@ -28,7 +28,7 @@ public interface ShopBasketRepository extends JpaRepository<ShopBasketEntity, Lo
 
     @Query(value =
             "SELECT " +
-                    "BASKET_ID, USER_ID, PRODUCT_NO, PRODUCT_NM, PRODUCT_CNT " +
+                    "BASKET_ID, USER_ID, PRODUCT_NO, PRODUCT_NM, PRICE, PRODUCT_IMG_PATH, PRODUCT_CNT " +
                     "FROM tb_shop_basket " +
                     "WHERE " +
                     "user_id = :userId " +

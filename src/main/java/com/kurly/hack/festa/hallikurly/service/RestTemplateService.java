@@ -62,7 +62,6 @@ public class RestTemplateService {
 
 		KurlyBagInfoRequestDto kurlyBagInfoRequestDto = KurlyBagInfoRequestDto
 					.builder()
-					.userId(userId)
 					.productNo(productNoList)
 					.orderDow(orderDowList)
 					.orderHourOfDay(orderHourOfDayList)
@@ -101,8 +100,8 @@ public class RestTemplateService {
 		}
 
 		System.out.println("stockSyncToMLServer : " + Arrays.asList(productNoList).toString());
-		SoldOutProductInfoDto stockDto =
-				SoldOutProductInfoDto
+		StockSyncInfoDto stockDto =
+				StockSyncInfoDto
 						.builder()
 						.productNo(productNoList)
 						.build();
@@ -130,14 +129,15 @@ public class RestTemplateService {
 			soldOutProductList.add(productDtoList.get(i).getProductNo());
 		}
 
-		SoldOutProductInfoDto stockDto =
+		SoldOutProductInfoDto soldOutProductInfoDto =
 				SoldOutProductInfoDto
 						.builder()
 						.productNo(soldOutProductList)
 						.build();
 
+		System.out.println(Arrays.asList("soldOutProductInfoToMLServer : " + soldOutProductInfoDto.getProductNo()));
 		try{
-			String jsonStr = restTemplate.postForObject(uri, stockDto, String.class);
+			String jsonStr = restTemplate.postForObject(uri, soldOutProductInfoDto, String.class);
 		}catch (Exception ex){
 			System.err.println(ex.toString());
 		}

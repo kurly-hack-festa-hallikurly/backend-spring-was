@@ -55,6 +55,8 @@ public class ShopBasketService implements IShopBasketService {
                 .userId(shopBasketDto.getUserId())
                 .productNo(shopBasketDto.getProductNo())
                 .productNm(shopBasketDto.getProductNm())
+                .price(shopBasketDto.getPrice())
+                .productImgPath(shopBasketDto.getProductImgPath())
                 .productCnt(1)
                 .build();
 
@@ -65,6 +67,14 @@ public class ShopBasketService implements IShopBasketService {
 
     @Override
     public ResponseEntity<?> updateShopBasketInfo(ShopBasketDto shopBasketDto) {
+        ShopBasketEntity shopBasketEntity
+                = shopBasketRepository.findByUserIdAndProductNo(
+                shopBasketDto.getUserId(), shopBasketDto.getProductNo());
+
+        if (ObjectUtils.isEmpty(shopBasketEntity)) {
+            return ResponseEntity.ok("요청 ID의 장바구니 데이터가 존재하지 않습니다.");
+        }
+
         shopBasketRepository.updateShopBasketInfo(
                  shopBasketDto.getUserId()
                 ,shopBasketDto.getProductNo()
@@ -74,6 +84,15 @@ public class ShopBasketService implements IShopBasketService {
 
     @Override
     public ResponseEntity<?> deleteShopBasketInfo(long userId, long productNo) {
+
+        ShopBasketEntity shopBasketEntity
+                = shopBasketRepository.findByUserIdAndProductNo(
+                userId, productNo);
+
+        if (ObjectUtils.isEmpty(shopBasketEntity)) {
+            return ResponseEntity.ok("요청 ID의 장바구니 데이터가 존재하지 않습니다.");
+        }
+
         shopBasketRepository.deleteShopBasketInfo(userId, productNo);
         return ResponseEntity.ok("삭제 완료");
     }
@@ -94,6 +113,8 @@ public class ShopBasketService implements IShopBasketService {
                             .userId(shopBasketEntity.get(i).getUserId())
                             .productNo(shopBasketEntity.get(i).getProductNo())
                             .productNm(shopBasketEntity.get(i).getProductNm())
+                            .price(shopBasketEntity.get(i).getPrice())
+                            .productImgPath(shopBasketEntity.get(i).getProductImgPath())
                             .productCnt(shopBasketEntity.get(i).getProductCnt())
                             .build());
         }

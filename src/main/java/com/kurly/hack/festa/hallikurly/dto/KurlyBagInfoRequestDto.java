@@ -11,10 +11,7 @@ import java.util.List;
 @Builder
 public class KurlyBagInfoRequestDto {
 
-    @JsonProperty("user_id")
-    private long userId;
-
-    @JsonProperty("product_no")
+    @JsonProperty("products")
     private List<Long> productNo;
 
     //order_dow: 구매 요일 (0-6: 각 요일을 의미 )

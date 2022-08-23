@@ -22,7 +22,8 @@ public class StockScheduler {
     }
 
     //5분마다 판매완료 상품 동기화
-    @Scheduled(cron = "0 */5 * * * *")
+//    @Scheduled(cron = "0 */5 * * * *")
+    @Scheduled(fixedRate = 5000, initialDelay = 3000)
     public void soldOutProductSyncToMLServer() {
         System.out.println("현재 시간 - " + new Date().toString());
         restTemplateService.soldOutProductInfoToMLServer();

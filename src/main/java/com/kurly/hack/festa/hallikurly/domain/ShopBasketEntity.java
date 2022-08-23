@@ -27,6 +27,12 @@ public class ShopBasketEntity {
     @Column(name = "product_nm")
     private String productNm;
 
+    @Column(name = "price")
+    private int price;
+
+    @Column(name = "product_img_path")
+    private String productImgPath;
+
     @Column(name = "product_cnt")
     private int productCnt;
 }

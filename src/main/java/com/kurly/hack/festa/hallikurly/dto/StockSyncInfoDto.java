@@ -9,9 +9,9 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
-public class SoldOutProductInfoDto {
+public class StockSyncInfoDto {
 
-    @JsonProperty("sold")
+    @JsonProperty("products")
     private List<Long> productNo;
 
 }
