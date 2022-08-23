@@ -18,6 +18,6 @@ public class StockScheduler {
 //    @Scheduled(cron = "0 0 * * * *") //매일 매시 정각
     public void stockSyncToMLServer() {
         System.out.println("현재 시간 - " + new Date().toString());
-//        restTemplateService.stockSyncToMLServer();
+        restTemplateService.stockSyncToMLServer();
     }
 }

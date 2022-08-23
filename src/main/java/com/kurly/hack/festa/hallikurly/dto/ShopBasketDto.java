@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
-import javax.persistence.*;
-
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -20,7 +18,7 @@ public class ShopBasketDto {
     @JsonProperty("product_no")
     private long productNo;
 
-    @ApiModelProperty(value = "상품명", example = "Chocolate Sandwich Cookies",hidden = true)
+    @ApiModelProperty(value = "상품명", example = "Chocolate Sandwich Cookies")
     @JsonProperty("product_nm")
     private String productNm;
 
@@ -28,11 +26,4 @@ public class ShopBasketDto {
     @JsonProperty("product_cnt")
     private int productCnt;
 
-
-//    public ShopBasketDto(long userId, long productNo, String productNm, int productCnt){
-//        this.userId = userId;
-//        this.productNo = productNo;
-//        this.productNm = productNm;
-//        this.productCnt = productCnt;
-//    }
 }

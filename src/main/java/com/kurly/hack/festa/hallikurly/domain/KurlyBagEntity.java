@@ -26,6 +26,9 @@ public class KurlyBagEntity {
     @Column(name = "PRODUCT_NM")
     private String productNm;
 
+    @Column(name = "PRODUCT_CNT")
+    private int productCnt;
+
     @Column(name = "PRICE")
     private String price;
 

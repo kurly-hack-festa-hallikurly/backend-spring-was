@@ -3,6 +3,7 @@ package com.kurly.hack.festa.hallikurly.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -25,5 +26,11 @@ public class OrderEntity extends BaseTimeEntity{
 
     @Column(name = "ORDER_CNT")
     private long orderCnt;
+
+    @Column(name = "ORDER_DOW")
+    private int orderDow;
+
+    @Column(name = "ORDER_HOUR_OF_DAY")
+    private int orderHourOfDay;
 
 }

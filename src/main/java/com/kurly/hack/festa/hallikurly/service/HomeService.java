@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,10 @@ public class HomeService implements IHomeService{
     public ResponseEntity<?> homeAccess(long userId) {
         //1.  s -> ml 컬리백 데이터 요청
         List<KurlyBagDto> MLReponseKurlyBagList = restTemplateService.kurlyBagInfoReqToMLServer(userId);
+
+        if (ObjectUtils.isEmpty(MLReponseKurlyBagList)) {
+            return ResponseEntity.ok("유저의 컬리백 데이터가 DB에 존재하지 않습니다.");
+        }
 
         //2. 응답받은 컬리백 데이터 DB 적재
         List<KurlyBagEntity> kurlyBagEntityList = new ArrayList<>();

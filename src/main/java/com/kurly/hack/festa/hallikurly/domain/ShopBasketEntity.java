@@ -24,6 +24,9 @@ public class ShopBasketEntity {
     @Column(name = "product_no")
     private long productNo;
 
+    @Column(name = "product_nm")
+    private String productNm;
+
     @Column(name = "product_cnt")
     private int productCnt;
 }

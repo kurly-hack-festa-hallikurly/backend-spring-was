@@ -16,7 +16,7 @@ public class ProductDto {
     private String productNm;
 
     @ApiModelProperty(value = "상품 가격", example = "7600")
-    private String price;
+    private int price;
 
     @ApiModelProperty(value = "상품 이미지 경로")
     private String productImgPath;

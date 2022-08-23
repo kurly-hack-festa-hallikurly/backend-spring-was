@@ -15,16 +15,35 @@ import java.util.Optional;
 @Repository
 public interface ShopBasketRepository extends JpaRepository<ShopBasketEntity, Long> {
 
-    List<ShopBasketEntity> findByUserId(long userId);
+    @Query(value =
+            "SELECT " +
+                    "tbs.BASKET_ID, tbs.USER_ID, tbs.PRODUCT_NO," +
+                    "tbp.PRODUCT_NM, tbs.PRODUCT_CNT, tbs.CREATED_DTM " +
+                    "FROM tb_shop_basket tbs " +
+                    "LEFT JOIN tb_product tbp " +
+                    "ON " +
+                    "tbs.product_no = tbp.product_no " +
+                    "WHERE user_id = :userId", nativeQuery = true)
+    List<ShopBasketEntity> findByUserId(@Param("userId") long userId);
+
+    @Query(value =
+            "SELECT " +
+                    "BASKET_ID, USER_ID, PRODUCT_NO, PRODUCT_NM, PRODUCT_CNT " +
+                    "FROM tb_shop_basket " +
+                    "WHERE " +
+                    "user_id = :userId " +
+                    "AND " +
+                    "product_no = :productNo", nativeQuery = true)
+    ShopBasketEntity findByUserIdAndProductNo(long userId, long productNo);
 
     @Transactional
     @Modifying
     @Query(value =
             "UPDATE tb_shop_basket " +
-            "set product_cnt = :productCnt " +
-            "where " +
+            "SET product_cnt = :productCnt " +
+            "WHERE " +
             "user_id = :userId " +
-            "and " +
+            "AND " +
             "product_no = :productNo"
             , nativeQuery = true)
     void updateShopBasketInfo(
