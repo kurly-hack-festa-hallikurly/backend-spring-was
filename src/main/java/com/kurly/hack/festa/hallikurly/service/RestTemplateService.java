@@ -2,6 +2,7 @@ package com.kurly.hack.festa.hallikurly.service;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.google.common.reflect.TypeToken;
@@ -10,6 +11,7 @@ import com.kurly.hack.festa.hallikurly.domain.OrderEntity;
 import com.kurly.hack.festa.hallikurly.dto.*;
 import com.kurly.hack.festa.hallikurly.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.client.RestTemplate;
@@ -30,10 +32,16 @@ public class RestTemplateService {
 	private final OrderRepository orderRepository;
 	private final ProductService productService;
 
+	@Value("${aws.ec2.ip}")
+	private String AWS_EC2_IP;
+
+	@Value("${ml.server.port}")
+	private String ML_SERVER_PORT;
+
 	public List<KurlyBagDto> kurlyBagInfoReqToMLServer(long userId) {
 		URI uri = UriComponentsBuilder
-				.fromUriString("http://localhost:5000")
-				.path("/predict")
+				.fromUriString("http://" + AWS_EC2_IP+ ":" + ML_SERVER_PORT)
+				.path("/kurly-bag")
 				.encode()
 				.build()
 				.toUri();
@@ -78,58 +86,60 @@ public class RestTemplateService {
 	//매일 매시 정각 한번 실행
 	public void stockSyncToMLServer() {
 		URI uri = UriComponentsBuilder
-				.fromUriString("http://localhost:5000")
+				.fromUriString("http://" + AWS_EC2_IP+ ":" + ML_SERVER_PORT)
 				.path("/stocks")
 				.encode()
 				.build()
 				.toUri();
 
-
 		List<Long> productNoList = new ArrayList<>();
 
-		List<ProductDto> productDtoList = productService.soldOutProductEntityToDto();
+		List<ProductDto> productDtoList = productService.expirationDtmProductEntityToDto();
 
 		for (int i = 0; i < productDtoList.size(); i++) {
 			productNoList.add(productDtoList.get(i).getProductNo());
 		}
 
+		System.out.println("stockSyncToMLServer : " + Arrays.asList(productNoList).toString());
 		SoldOutProductInfoDto stockDto =
 				SoldOutProductInfoDto
 						.builder()
 						.productNo(productNoList)
 						.build();
 
-		String jsonStr = "";
-//		try{
-//			jsonStr = restTemplate.postForObject(uri, stockDto, String.class);
-//		}catch (Exception ex){
-//			System.err.println(ex.toString());
-//		}
+		try{
+			restTemplate.postForObject(uri, stockDto, String.class);
+		}catch (Exception ex){
+			System.err.println(ex.toString());
+		}
 	}
 
 	//5분마다 판매완료 된 재고 ML 서버로 송신
 	public void soldOutProductInfoToMLServer() {
 		URI uri = UriComponentsBuilder
-				.fromUriString("http://localhost:5000")
+				.fromUriString("http://" + AWS_EC2_IP+ ":" + ML_SERVER_PORT)
 				.path("/products/soldout")
 				.encode()
 				.build()
 				.toUri();
 
-//		List<ProductDto> productDtoList = productService.soldOutProductEntityToDto();
+		List<ProductDto> productDtoList = productService.soldOutProductEntityToDto();
+		List<Long> soldOutProductList = new ArrayList<>();
 
-//
-//		SoldOutProductInfoDto stockDto =
-//				SoldOutProductInfoDto
-//						.builder()
-//						.productNo(1)
-//						.dateDiff(2)
-//						.build();
+		for (int i = 0; i < productDtoList.size(); i++) {
+			soldOutProductList.add(productDtoList.get(i).getProductNo());
+		}
 
-//		try{
-//			String jsonStr = restTemplate.postForObject(uri, stockDto, String.class);
-//		}catch (Exception ex){
-//			System.err.println(ex.toString());
-//		}
+		SoldOutProductInfoDto stockDto =
+				SoldOutProductInfoDto
+						.builder()
+						.productNo(soldOutProductList)
+						.build();
+
+		try{
+			String jsonStr = restTemplate.postForObject(uri, stockDto, String.class);
+		}catch (Exception ex){
+			System.err.println(ex.toString());
+		}
 	}
 }

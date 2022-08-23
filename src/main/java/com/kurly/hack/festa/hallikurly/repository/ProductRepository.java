@@ -13,8 +13,17 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
     @Query(value =
             "select " +
-                    "PRODUCT_NO, PRODUCT_NM, PRICE, SOLD_OUT, SHELF_LIFE, PRODUCT_IMG_PATH " +
+                    "PRODUCT_NO, PRODUCT_NM, PRICE, SOLD_OUT" +
+                    ",SHELF_LIFE, PRODUCT_IMG_PATH " +
                     "FROM tb_product " +
                     "WHERE DATEDIFF(SHELF_LIFE,now()) BETWEEN  0 and 4", nativeQuery = true)
+    List<ProductEntity> findByExpirationDtmProductInfo();
+
+    @Query(value =
+            "select " +
+                    "PRODUCT_NO, PRODUCT_NM, PRICE, SOLD_OUT" +
+                    ",SHELF_LIFE, PRODUCT_IMG_PATH " +
+                    "FROM tb_product " +
+                    "WHERE SOLD_OUT = 'Y'", nativeQuery = true)
     List<ProductEntity> findBySoldOutProductInfo();
 }

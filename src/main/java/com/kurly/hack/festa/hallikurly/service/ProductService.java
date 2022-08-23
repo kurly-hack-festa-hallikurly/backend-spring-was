@@ -49,11 +49,31 @@ public class ProductService implements IProductService{
         return productDtoList;
     }
 
+    public List<ProductDto> expirationDtmProductEntityToDto() {
+
+        List<ProductEntity> productEntityList = productRepository.findByExpirationDtmProductInfo();
+
+        List<ProductDto> productDtoList = new ArrayList<>();
+        for(int i=0; i< productEntityList.size(); i++) {
+
+            productDtoList.add(
+                    ProductDto
+                            .builder()
+                            .productNo(productEntityList.get(i).getProductNo())
+                            .productNm(productEntityList.get(i).getProductNm())
+                            .price(productEntityList.get(i).getPrice())
+                            .productImgPath(productEntityList.get(i).getProductImgPath())
+                            .build());
+        }
+
+        return productDtoList;
+    }
+
     public List<ProductDto> soldOutProductEntityToDto() {
 
         List<ProductEntity> productEntityList = productRepository.findBySoldOutProductInfo();
-        List<ProductDto> productDtoList = new ArrayList<>();
 
+        List<ProductDto> productDtoList = new ArrayList<>();
         for(int i=0; i< productEntityList.size(); i++) {
 
             productDtoList.add(

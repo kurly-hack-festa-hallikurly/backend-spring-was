@@ -49,3 +49,11 @@ logging:
               BasicBinder: TRACE
 server:
   port: 9091
+
+aws:
+  ec2:
+    ip: ${aws.ec2.ip}
+
+ml:
+  server:
+    port: ${ml.server.port}
