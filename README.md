@@ -6,7 +6,7 @@
 * **[개발 환경](#개발-환경)**
 * **[Architecture](#Architecture)**
 * **[Sequence Diagram](#Sequence-Diagram)**
-* **[추천 알고리즘](#ML-추천-알고리즘)**
+* **[추천 알고리즘](#추천-알고리즘)**
 * **[최종 시연](#최종-시연)**
 
 <br><hr><br>
