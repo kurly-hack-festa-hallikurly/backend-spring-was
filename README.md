@@ -7,7 +7,7 @@
 * **[Architecture](#Architecture)**
 * **[Sequence Diagram](#Sequence-Diagram)**
 * **[추천 알고리즘](#추천-알고리즘)**
-* **[최종 시연](#최종-시연)**
+* **[Rest API Docs](#Rest-API-Docs)**
 
 <br><hr><br>
 
@@ -38,5 +38,5 @@
 
 <br><hr><br>
 
-# 최종 시연
-![image](https://user-images.githubusercontent.com/97106584/187216801-9ebcde19-8156-4986-8fac-09007d5bb6a0.png)
+# Rest API Docs
+![image](https://user-images.githubusercontent.com/97106584/187218526-9f0beb62-efff-4092-9400-1bfb161682ae.png)
