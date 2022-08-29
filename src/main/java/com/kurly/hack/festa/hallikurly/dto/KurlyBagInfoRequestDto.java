@@ -19,6 +19,6 @@ public class KurlyBagInfoRequestDto {
     private List<Integer> orderDow;
 
     //order_hour_of_day: 구매 시간(0-23)
-    @JsonProperty("product_no")
+    @JsonProperty("order_hour_of_day")
     private List<Integer> orderHourOfDay;
 }
