@@ -18,6 +18,7 @@
 * Spring Data JPA
 * Spring Security
 * Spring Scheduler
+* Swagger API Docs
 * MariaDB(RDS)
 * AWS ec2, S3 Bucket
 
