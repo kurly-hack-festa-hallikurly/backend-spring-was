@@ -39,5 +39,5 @@
 
 <br><hr><br>
 
-# Rest API Docs
+# API Docs
 ![image](https://user-images.githubusercontent.com/97106584/187218526-9f0beb62-efff-4092-9400-1bfb161682ae.png)
